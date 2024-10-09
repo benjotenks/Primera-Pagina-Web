@@ -91,7 +91,7 @@ Permite solicitudes desde localhost:8090 y desde el playground de Apollo
 ademas de entregar credenciales para poder testear las solicitudes
 */
 const corsOptions = {
-    origin: ['http://localhost:8090', 'http://127.0.0.1:5500', 'https://studio.apollographql.com'],
+    origin: ['http://localhost:8090', 'http://127.0.0.1:5500', 'https://primera-pagina-web-flax.vercel.app/', 'https://studio.apollographql.com'],
     credentials: true
 }
 
