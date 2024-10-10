@@ -14,6 +14,8 @@ mongoose.connect(uri, {
     useUnifiedTopology: true // ayuda  amanejar eficazmente las conexiones evitando perdidas o replicas en mongoDB
 }); 
 
+
+
 /*
 Definimos los tipos de datos para los usuarios y alertas
 Definimos User
@@ -86,6 +88,10 @@ const resolvers = {
 
 const app = express(); // Instanciamos la aplicacion 
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 /*
 Permite solicitudes desde localhost:8090 y desde el playground de Apollo
 ademas de entregar credenciales para poder testear las solicitudes
@@ -110,7 +116,11 @@ app.use(cors(corsOptions));
 Iniciamos el servidor de Apollo con los typeDefs y resolvers previamente definidos
 */
 async function startServer() {
-    const apolloServer = new ApolloServer({ typeDefs, resolvers });
+    const apolloServer = new ApolloServer({ typeDefs, 
+                                            resolvers,
+                                            cache: 'bounded',
+                                            persistedQueries: false,
+                                         });
     await apolloServer.start();
     apolloServer.applyMiddleware({ app, path: '/graphql' }); // Habilitamos Apollo en la aplicacion 
 }
