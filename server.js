@@ -100,7 +100,8 @@ const corsOptions = {
              'http://127.0.0.1:5500', 
              'https://primera-pagina-web-flax.vercel.app/', 
              'https://studio.apollographql.com',
-             'https://primera-pagina-web-twl9.onrender.com'], // Nueva URL
+             'https://primera-pagina-web-twl9.onrender.com',
+             'https://primera-pagina-web-twl9.onrender.com/graphql'], // Nueva URL
     credentials: true
 };
 
