@@ -112,7 +112,7 @@ Iniciamos el servidor de Apollo con los typeDefs y resolvers previamente definid
 async function startServer() {
     const apolloServer = new ApolloServer({ typeDefs, resolvers });
     await apolloServer.start();
-    apolloServer.applyMiddleware({ app }); // Habilitamos Apollo en la aplicacion 
+    apolloServer.applyMiddleware({ app, path: '/graphql' }); // Habilitamos Apollo en la aplicacion 
 }
 
 /*
