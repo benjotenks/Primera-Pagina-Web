@@ -2,6 +2,7 @@ const express = require('express'); //
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { ApolloServer, gql } = require('apollo-server-express');
+const path = require('path');
 
 const User = require('./models/user'); // Importamos el modelo de usuario
 
@@ -127,16 +128,11 @@ async function startServer() {
 Iniciamos el servidor en el puerto 8090
 */
 const PORT = process.env.PORT || 8090;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+startServer().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Servidor corriendo en el puerto ${PORT}`);
+    });
 });
-
-startServer();
-
-app.listen(8090, function() {
-    console.log('Server started');
-})
-
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
