@@ -88,9 +88,7 @@ const resolvers = {
 
 const app = express(); // Instanciamos la aplicacion 
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
 
 /*
 Permite solicitudes desde localhost:8090 y desde el playground de Apollo
@@ -138,3 +136,8 @@ startServer();
 app.listen(8090, function() {
     console.log('Server started');
 })
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
