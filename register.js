@@ -2,8 +2,8 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     e.preventDefault();
     const email = document.getElementById('RegisterEmail').value;
     const pass = document.getElementById('RegisterPass').value;
-
-    const response = await fetch('http://localhost:8090/graphql', {
+    // 'http://localhost:8090/graphql' 
+    const response = await fetch('https://primera-pagina-web-twl9.onrender.com/graphql', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

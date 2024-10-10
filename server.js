@@ -5,7 +5,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 
 const User = require('./models/user'); // Importamos el modelo de usuario
 
-uri = 'mongodb+srv://benjotenks:92EqXT57ss84VRNn@cluster0.d18af.mongodb.net/DbWebMovil'; // Conexion a la base de datos
+uri = process.env.MONGODB_URI; // Conexion a la base de datos
 /*
 Conectamos a la base de datos con la URI previamente establecida
 */
@@ -94,9 +94,10 @@ const corsOptions = {
     origin: ['http://localhost:8090',
              'http://127.0.0.1:5500', 
              'https://primera-pagina-web-flax.vercel.app/', 
-             'https://studio.apollographql.com'],
+             'https://studio.apollographql.com',
+             'https://primera-pagina-web-twl9.onrender.com'], // Nueva URL
     credentials: true
-}
+};
 
 /*
 Habilitamos el uso de cors con las opciones previamente establecidas
@@ -113,6 +114,14 @@ async function startServer() {
     await apolloServer.start();
     apolloServer.applyMiddleware({ app }); // Habilitamos Apollo en la aplicacion 
 }
+
+/*
+Iniciamos el servidor en el puerto 8090
+*/
+const PORT = process.env.PORT || 8090;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
 
 startServer();
 
