@@ -12,7 +12,9 @@ Conectamos a la base de datos con la URI previamente establecida
 */
 mongoose.connect(uri, { 
     useNewUrlParser: true, // Especificamos que el uri es una cadena de conexion de mongoDB mas nueva y no deprecada
-    useUnifiedTopology: true // ayuda  amanejar eficazmente las conexiones evitando perdidas o replicas en mongoDB
+    useUnifiedTopology: true, // ayuda  amanejar eficazmente las conexiones evitando perdidas o replicas en mongoDB
+    ssl: true,
+    sslValidate: false
 }); 
 
 
