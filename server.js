@@ -11,10 +11,11 @@ uri = process.env.MONGODB_URI; // Conexion a la base de datos
 Conectamos a la base de datos con la URI previamente establecida
 */
 mongoose.connect(uri, { 
-    useNewUrlParser: true, // Especificamos que el uri es una cadena de conexion de mongoDB mas nueva y no deprecada
-    useUnifiedTopology: true, // ayuda  amanejar eficazmente las conexiones evitando perdidas o replicas en mongoDB
-    ssl: true,
-}); 
+}).then(() => {
+    console.log('Conexión a la base de datos establecida');
+}).catch(err => {
+    console.error('Error de conexión a la base de datos:', err);
+});
 
 
 
@@ -102,6 +103,7 @@ const corsOptions = {
              'https://primera-pagina-web-flax.vercel.app/', 
              'https://studio.apollographql.com',
              'https://primera-pagina-web-twl9.onrender.com',
+             'httos://primera-pagina-web-twl9.onrender.com/',
              'https://primera-pagina-web-twl9.onrender.com/graphql'], // Nueva URL
     credentials: true
 };

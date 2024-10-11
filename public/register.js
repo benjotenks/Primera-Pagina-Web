@@ -29,12 +29,20 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
             }),
         });
 
+        // Verificar si la respuesta no fue exitosa
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const result = await response.json();
-        console.log('Resultado:', result);
+        
+        // Manejar errores de GraphQL
+        if (result.errors) {
+            console.error('GraphQL errors:', result.errors);
+            return; // Detener aquí si hay errores
+        }
+
+        console.log('Resultado:', result.data.addUser); // Mostrar los datos del usuario agregado
     } catch (error) {
         console.error('Error:', error);
     }
