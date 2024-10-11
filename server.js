@@ -10,7 +10,8 @@ uri = process.env.MONGODB_URI; // Conexion a la base de datos
 /*
 Conectamos a la base de datos con la URI previamente establecida
 */
-mongoose.connect(uri, { 
+mongoose.connect(uri, {
+    serverSelectionTimeoutMS: 30000, // 30 segundos
 }).then(() => {
     console.log('Conexión a la base de datos establecida');
 }).catch(err => {
@@ -71,10 +72,15 @@ const resolvers = {
         },
     },
     Mutation: {
-        async addUser(_ , { input }) {
-            const user = new User(input);
-            await user.save();
-            return user;
+        async addUser(_, { input }) {
+            try {
+                const user = new User(input);
+                await user.save();
+                return user;
+            } catch (error) {
+                console.error('Error adding user:', error);
+                throw new Error('Failed to add user');
+            }
         },
         async updateUser(_, {id, input }) {
             const user = await User.findByIdAndUpdate(id, input, { new: true });
