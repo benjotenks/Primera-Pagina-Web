@@ -79,6 +79,7 @@ const resolvers = {
                 return user;
             } catch (error) {
                 console.error('Error adding user:', error);
+                console.error('User being: ', input); // temporal
                 throw new Error('Failed to add user');
             }
         },
