@@ -12,6 +12,7 @@ Conectamos a la base de datos con la URI previamente establecida
 */
 mongoose.connect(uri, {
     serverSelectionTimeoutMS: 30000, // 30 segundos
+    ssl: true,
 }).then(() => {
     console.log('Conexión a la base de datos establecida');
 }).catch(err => {
